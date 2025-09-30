@@ -9,20 +9,12 @@ import Spacer from '../Spacer';
 import ShoeSidebar from '../ShoeSidebar';
 import ShoeGrid from '../ShoeGrid';
 
-const ShoeCrumbsContent = () => {
+const ShoeBreadcrumbs = () => {
   return (
-    <>
+    <Breadcrumbs>
       <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
       <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
       <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-    </>
-  );
-};
-
-const ShoeBreadcrumbsBase = ({ className }) => {
-  return (
-    <Breadcrumbs className={className}>
-      <ShoeCrumbsContent />
     </Breadcrumbs>
   );
 };
@@ -32,8 +24,12 @@ const ShoeIndex = ({ sortId, setSortId }) => {
     <Wrapper>
       <MainColumn>
         <Header>
-          <MobileShoeBreadcrumbs />
-          <Title>Running</Title>
+          <div>
+            <MobileShoeBreadcrumbs>
+              <ShoeBreadcrumbs />
+            </MobileShoeBreadcrumbs>
+            <Title>Running</Title>
+          </div>
           <SelectWrapper>
             <Select
               label="Sort"
@@ -49,7 +45,9 @@ const ShoeIndex = ({ sortId, setSortId }) => {
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <DesktopShoeBreadcrumbs />
+        <DesktopShoeBreadcrumbs>
+          <ShoeBreadcrumbs />
+        </DesktopShoeBreadcrumbs>
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -88,7 +86,10 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  flex-wrap: wrap;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    align-items: flex-end;
+  }
 `;
 
 const Title = styled.h2`
@@ -96,16 +97,15 @@ const Title = styled.h2`
   font-weight: ${WEIGHTS.medium};
 `;
 
-const MobileShoeBreadcrumbs = styled(ShoeBreadcrumbsBase)`
+const MobileShoeBreadcrumbs = styled.div`
   display: none;
 
   @media ${QUERIES.tabletAndSmaller} {
     display: flex;
-    width: 100%;
   }
 `;
 
-const DesktopShoeBreadcrumbs = styled(ShoeBreadcrumbsBase)`
+const DesktopShoeBreadcrumbs = styled.div`
   display: flex;
 
   @media ${QUERIES.tabletAndSmaller} {
