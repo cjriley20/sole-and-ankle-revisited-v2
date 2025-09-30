@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { WEIGHTS } from '../../constants';
+import { QUERIES, WEIGHTS } from '../../constants';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
@@ -9,11 +9,30 @@ import Spacer from '../Spacer';
 import ShoeSidebar from '../ShoeSidebar';
 import ShoeGrid from '../ShoeGrid';
 
+const ShoeCrumbsContent = () => {
+  return (
+    <>
+      <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
+    </>
+  );
+};
+
+const ShoeBreadcrumbsBase = ({ className }) => {
+  return (
+    <Breadcrumbs className={className}>
+      <ShoeCrumbsContent />
+    </Breadcrumbs>
+  );
+};
+
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
         <Header>
+          <MobileShoeBreadcrumbs />
           <Title>Running</Title>
           <Select
             label="Sort"
@@ -28,13 +47,7 @@ const ShoeIndex = ({ sortId, setSortId }) => {
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <Breadcrumbs>
-          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale/shoes">
-            Shoes
-          </Breadcrumbs.Crumb>
-        </Breadcrumbs>
+        <DesktopShoeBreadcrumbs />
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -51,6 +64,10 @@ const Wrapper = styled.div`
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
 `;
 
 const MainColumn = styled.div`
@@ -61,11 +78,29 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
 `;
 
 const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
+`;
+
+const MobileShoeBreadcrumbs = styled(ShoeBreadcrumbsBase)`
+  display: none;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: flex;
+    width: 100%;
+  }
+`;
+
+const DesktopShoeBreadcrumbs = styled(ShoeBreadcrumbsBase)`
+  display: flex;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
 `;
 
 export default ShoeIndex;
