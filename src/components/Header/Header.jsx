@@ -19,9 +19,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Side>
+        <LeftSide>
           <Logo />
-        </Side>
+        </LeftSide>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -30,11 +30,11 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
-        <Side>
+        <RightSide>
           <Icon id="shopping-bag" strokeWidth={2} />
           <Icon id="search" strokeWidth={2} />
           <Icon id="menu" strokeWidth={2} />
-        </Side>
+        </RightSide>
       </MainHeader>
 
       <MobileMenu
@@ -63,15 +63,24 @@ const Nav = styled.nav`
   }
 `;
 
-const Side = styled.div`
+const LeftSide = styled.div`
   flex: 1;
+`;
 
-  /* ${Icon} {
+const RightSide = styled.div`
+  flex: 1;
+  justify-content: flex-end;
+
+  & > * {
     display: none;
-  } */
+  }
 
   @media ${QUERIES.tabletAndSmaller} {
     display: flex;
+
+    & > * {
+      display: revert;
+    }
   }
 `;
 
