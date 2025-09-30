@@ -51,6 +51,10 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${QUERIES.phoneAndSmaller} {
+    padding-inline: 16px;
+  }
 `;
 
 const Nav = styled.nav`
@@ -69,7 +73,6 @@ const LeftSide = styled.div`
 
 const RightSide = styled.div`
   flex: 1;
-  justify-content: flex-end;
 
   & > * {
     display: none;
@@ -77,10 +80,16 @@ const RightSide = styled.div`
 
   @media ${QUERIES.tabletAndSmaller} {
     display: flex;
+    justify-content: flex-end;
+    gap: 32px;
 
     & > * {
       display: revert;
     }
+  }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    gap: 16px;
   }
 `;
 
