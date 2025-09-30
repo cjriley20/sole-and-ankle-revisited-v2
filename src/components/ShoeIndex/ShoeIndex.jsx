@@ -63,8 +63,6 @@ const Wrapper = styled.div`
 `;
 
 const SelectWrapper = styled.div`
-  display: flex;
-
   @media ${QUERIES.phoneAndSmaller} {
     display: none;
   }
