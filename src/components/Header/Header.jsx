@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS, QUERIES, WEIGHTS } from '../../constants';
+import Icon from '../Icon';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
@@ -29,7 +30,11 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
-        <Side />
+        <Side>
+          <Icon id="shopping-bag" strokeWidth={2} />
+          <Icon id="search" strokeWidth={2} />
+          <Icon id="menu" strokeWidth={2} />
+        </Side>
       </MainHeader>
 
       <MobileMenu
@@ -52,10 +57,22 @@ const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
   flex: 1;
+
+  /* ${Icon} {
+    display: none;
+  } */
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: flex;
+  }
 `;
 
 const NavLink = styled.a`
