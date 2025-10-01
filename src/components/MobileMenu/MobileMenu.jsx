@@ -42,7 +42,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
-  background: hsl(220deg 5% 40% / 0.8);
+  background: var(--color-overlay);
 `;
 
 const Content = styled(Dialog.Content)`
