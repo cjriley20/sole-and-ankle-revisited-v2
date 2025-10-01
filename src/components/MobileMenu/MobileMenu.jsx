@@ -71,7 +71,7 @@ const Filler = styled.div`
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
 `;
 
 const NavLink = styled.a`
@@ -91,7 +91,7 @@ const Footer = styled.footer`
   flex-direction: column;
   flex: 1;
   justify-content: flex-end;
-  gap: 14px;
+  gap: 8px;
 `;
 
 const FooterLink = styled.a`
